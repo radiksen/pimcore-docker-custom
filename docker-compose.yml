@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # Веб-сервер Nginx
+  # Nginx Webserver
   nginx:
     image: nginx:1.27-alpine
     container_name: pimcore_nginx
@@ -15,7 +15,7 @@ services:
     networks:
       - pimcore_net
 
-  # PHP-FPM
+  # PHP-FPM Service
   php:
     build:
       context: ./docker/php
@@ -36,7 +36,7 @@ services:
     networks:
       - pimcore_net
 
-  # База данных MariaDB
+  # MariaDB Database
   db:
     image: mariadb:10.11
     container_name: pimcore_db
@@ -50,7 +50,7 @@ services:
     networks:
       - pimcore_net
 
-  # Redis для кэша
+  # Redis for Caching
   redis:
     image: redis:7-alpine
     container_name: pimcore_redis

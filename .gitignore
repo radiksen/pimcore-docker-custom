@@ -1,14 +1,12 @@
-# Игнорировать локальный файл с переменными окружения
+# Ignore local environment file
 .env
 
-# Игнорировать папку с кодом Pimcore и его зависимостями.
-# Мы публикуем ШАБЛОН, а не готовый проект.
-# Сам проект будет устанавливаться локально.
-# Игнорировать всё содержимое папки src...
+# Ignore Composer dependencies, Pimcore assets, logs, etc.
+# The project should be installed via composer, not stored in git.
 src/*
 
-# ...кроме файла .gitkeep
+# But DO NOT ignore the .gitkeep file to keep the directory in the repo
 !src/.gitkeep
 
-# Игнорировать временные файлы Docker
+# Ignore Docker data volumes
 db_data/
