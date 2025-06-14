@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # Веб-сервер Nginx
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: pimcore_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - pimcore_net
+
+  # PHP-FPM
+  php:
+    build:
+      context: ./docker/php
+    container_name: pimcore_php
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USERNAME=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_DATABASE=${MYSQL_DATABASE}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - db
+      - redis
+    networks:
+      - pimcore_net
+
+  # База данных MariaDB
+  db:
+    image: mariadb:10.11
+    container_name: pimcore_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - pimcore_net
+
+  # Redis для кэша
+  redis:
+    image: redis:7-alpine
+    container_name: pimcore_redis
+    networks:
+      - pimcore_net
+
+networks:
+  pimcore_net:
+    driver: bridge
+
+volumes:
+  db_data:
