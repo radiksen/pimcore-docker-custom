@@ -1,8 +1,8 @@
 # Pimcore Docker Starter (Simple Apache)
 
 This is a simple, ready-to-use Docker environment for local Pimcore development. This starter kit uses Docker Compose and includes a single container for Apache/PHP and a separate container for the MariaDB database.
-
-## Features
+![Pimcore Admin UI](https://github.com/radiksen/pimcore-docker-custom/blob/main/Screenshot%202025-06-20%20103557.png
+## Features?raw=true)
 
 -   **Docker Compose**: Simple two-container setup.
 -   **Apache**: Web server configured for Pimcore.
