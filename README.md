@@ -5,7 +5,7 @@ A clean, production-ready Docker environment for running Pimcore. This starter k
 ## Features
 
 -   **Docker Compose**: Easy multi-container setup.
--   **Nginx**: High-performance web server.
+-   **Apache**: Web server.
 -   **PHP 8.2-FPM**: With all necessary extensions for Pimcore 11.
 -   **MariaDB 10.11**: Robust database for your data.
 -   **Redis**: For high-speed caching and session storage.
@@ -23,7 +23,7 @@ Follow these steps to get your Pimcore instance up and running.
 
 **1. Clone the Repository**
 ```bash
-git clone [https://github.com/radiksen/pimcore-docker-starter.git](https://github.com/radiksen/pimcore-docker-starter.git)
-cd pimcore-docker-starter
+git clone [https://github.com/radiksen/pimcore-docker-custom.git](https://github.com/radiksen/pimcore-docker-custom.git)
+cd pimcore-docker-custom
 
 
