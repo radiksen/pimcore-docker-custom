@@ -31,7 +31,6 @@ cd pimcore-docker-custom
 This command will build the Docker image and launch the containers in detached mode.
 
 ```bash
-
 docker-compose up -d --build
 
 
@@ -39,8 +38,7 @@ docker-compose up -d --build
 
 Run Composer install inside the running container to download all required PHP libraries.
 
-Bash
-
+```bash
 docker-compose exec pimcore composer install
 
 
@@ -51,7 +49,6 @@ This command will install Pimcore using the credentials from docker-compose.yml 
 (Replace admin and your_strong_password with your desired credentials)
 
 ```bash
-
 docker-compose exec pimcore vendor/bin/pimcore-install \
   --admin-username admin \
   --admin-password your_strong_password \
@@ -63,11 +60,9 @@ docker-compose exec pimcore vendor/bin/pimcore-install \
   Important: After installation, you might need to fix file permissions so Pimcore can write to the cache and logs.
 
 ```bash
-
 sudo chown -R www-data:www-data pimcore/var pimcore/public/var
 
 Important: After installation, you might need to fix file permissions so Pimcore can write to the cache and logs.
 
-Bash
-
+```bash
 sudo chown -R www-data:www-data pimcore/var pimcore/public/var
