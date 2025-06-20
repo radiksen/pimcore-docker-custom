@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+<<<<<<< HEAD
   pimcore:
     build: .
     container_name: pimcore
@@ -30,4 +31,3 @@ services:
 
 volumes:
   db-data:
-
