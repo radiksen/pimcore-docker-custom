@@ -1,17 +1,16 @@
-# Pimcore Docker Starter
+# Pimcore Docker Starter (Simple Apache)
 
-A clean, production-ready Docker environment for running Pimcore. This starter kit uses Docker Compose and includes Nginx, PHP-FPM, MariaDB, and Redis.
+This is a simple, ready-to-use Docker environment for local Pimcore development. This starter kit uses Docker Compose and includes a single container for Apache/PHP and a separate container for the MariaDB database.
 
 ## Features
 
--   **Docker Compose**: Easy multi-container setup.
--   **Apache**: Web server.
--   **PHP 8.2-FPM**: With all necessary extensions for Pimcore 11.
--   **MariaDB 10.11**: Robust database for your data.
--   **Redis**: For high-speed caching and session storage.
+-   **Docker Compose**: Simple two-container setup.
+-   **Apache**: Web server configured for Pimcore.
+-   **PHP**: Ready-to-use environment for running Pimcore.
+-   **MariaDB 10.6**: Robust database for your data.
 -   **Composer**: Ready to use inside the PHP container.
 
-## Prerequisites
+## Requirements
 
 Make sure you have the following installed on your system:
 -   [Docker](https://docs.docker.com/get-docker/)
@@ -27,3 +26,48 @@ git clone [https://github.com/radiksen/pimcore-docker-custom.git](https://github
 cd pimcore-docker-custom
 
 
+2. Launch the Containers
+
+This command will build the Docker image and launch the containers in detached mode.
+
+Bash
+
+docker-compose up -d --build
+
+
+3. Install Pimcore Dependencies
+
+Run Composer install inside the running container to download all required PHP libraries.
+
+Bash
+
+docker-compose exec pimcore composer install
+
+
+4. Run the Pimcore Installer
+
+This command will install Pimcore using the credentials from docker-compose.yml and create an admin user for you.
+
+(Replace admin and your_strong_password with your desired credentials)
+
+Bash
+
+docker-compose exec pimcore vendor/bin/pimcore-install \
+  --admin-username admin \
+  --admin-password your_strong_password \
+  --mysql-host-socket db \
+  --mysql-username pimcore \
+  --mysql-password pimcore \
+  --mysql-database pimcore
+
+  Important: After installation, you might need to fix file permissions so Pimcore can write to the cache and logs.
+
+Bash
+
+sudo chown -R www-data:www-data pimcore/var pimcore/public/var
+
+Important: After installation, you might need to fix file permissions so Pimcore can write to the cache and logs.
+
+Bash
+
+sudo chown -R www-data:www-data pimcore/var pimcore/public/var
