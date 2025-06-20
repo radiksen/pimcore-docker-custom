@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  pimcore:
+    build: .
+    container_name: pimcore
+    ports:
+      - "8080:80"
+    volumes:
+      - ./pimcore:/var/www/html
+    working_dir: /var/www/html
+    environment:
+      - PIMCORE_INSTALL_MYSQL_HOST=db
+      - PIMCORE_INSTALL_MYSQL_USER=pimcore
+      - PIMCORE_INSTALL_MYSQL_PASSWORD=pimcore
+      - PIMCORE_INSTALL_MYSQL_DATABASE=pimcore
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.6
+    container_name: pimcore-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pimcore
+      MYSQL_USER: pimcore
+      MYSQL_PASSWORD: pimcore
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
+
