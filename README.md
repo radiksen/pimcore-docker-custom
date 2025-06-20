@@ -26,7 +26,7 @@ git clone [https://github.com/radiksen/pimcore-docker-custom.git](https://github
 cd pimcore-docker-custom
 
 
-2. Launch the Containers
+**2. Launch the Containers**
 
 This command will build the Docker image and launch the containers in detached mode.
 
@@ -35,7 +35,7 @@ Bash
 docker-compose up -d --build
 
 
-3. Install Pimcore Dependencies
+**3. Install Pimcore Dependencies**
 
 Run Composer install inside the running container to download all required PHP libraries.
 
@@ -44,7 +44,7 @@ Bash
 docker-compose exec pimcore composer install
 
 
-4. Run the Pimcore Installer
+**4. Run the Pimcore Installer**
 
 This command will install Pimcore using the credentials from docker-compose.yml and create an admin user for you.
 
